@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button, Text, View } from "react-native";
 
 //Exemplo de criação de props, onde, interface é o tipo de dado da props
@@ -22,6 +22,8 @@ const Example = ({ children, text }: ExampleProps) => {
   // Para alterar a variavel, é só chamar a função de alteração passando o novo valor
   const [name, setName] = useState<string>("Raik");
   const [lastName, setLastName] = useState<string>("Marcondes");
+  const [value1, setValue1] = useState<string>(1);
+  const [value2, setValue2] = useState<string>(2);
 
   // O hook useEffect, vai rodar no começo quando o componente for criado e, toda vez que houver alteração nas variaveis que forem passadas no segundo parametro dele
   //
@@ -43,6 +45,27 @@ const Example = ({ children, text }: ExampleProps) => {
     setLastName("Casimiro");
   };
 
+  const changeValue1 = () => {
+    setValue1(value1 + 1);
+  };
+
+  const changeValue2 = () => {
+    setValue2(value2 + 1);
+  };
+
+  // Exemplo de uso do hook useMemo, ele serve para manter em cache alguma ação muito pesada, nesse exemplo, o calculo leva em torno de 2s, o que ainda é pouco, mas já dá pra exemplificar
+  // Esse calculo, só precisa ser executado, caso haja alteração na variavel value1, qualquer uma das outras variaveis nesse componente não é usada nele, então não faz sentido re-executar a função toda hora
+  // O useMemo também pode receber como segundo parametro uma variavel que ele vai esperar atualizar para ai sim, re-executar a função interna dele
+  //
+  // Importante perceber que, o useMemo utiliza cache, então não deve ser usado pra tudo, pois o cache pode estourar dependendo do modelo do celular
+  let sum = 0;
+  const calc = useMemo(() => {
+    for (i = 0; i < 9 ** 7; i++) {
+      sum += value1;
+    }
+    return sum;
+  }, [value1]);
+
   return (
     <View>
       <Text>{children}</Text>
@@ -50,6 +73,11 @@ const Example = ({ children, text }: ExampleProps) => {
       <Text>{name}</Text>
       <Button onPress={changeName} title="Nome" />
       <Button onPress={changeLastName} title="Sobrenome" />
+      <Text>{value1}</Text>
+      <Text>{value2}</Text>
+      <Text>{calc}</Text>
+      <Button onPress={changeValue1} title="value1" />
+      <Button onPress={changeValue2} title="value2" />
     </View>
   );
 };
