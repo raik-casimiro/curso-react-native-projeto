@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button, Text, View } from "react-native";
 
+import { useApp } from "./useApp";
+
 //Exemplo de criação de props, onde, interface é o tipo de dado da props
 //
 // Aqui foi utilizado uma tipagem ExampleProps para identificar o que o componente espera receber, nesse caso, um atributo de nome text do tipo string que não é obrigatório (caractere ? na frente do nome significa que não é obrigatório)
@@ -53,6 +55,8 @@ const Example = ({ children, text }: ExampleProps) => {
     setValue2(value2 + 1);
   };
 
+  const { value3, changeText } = useApp();
+
   // Exemplo de uso do hook useMemo, ele serve para manter em cache alguma ação muito pesada, nesse exemplo, o calculo leva em torno de 2s, o que ainda é pouco, mas já dá pra exemplificar
   // Esse calculo, só precisa ser executado, caso haja alteração na variavel value1, qualquer uma das outras variaveis nesse componente não é usada nele, então não faz sentido re-executar a função toda hora
   // O useMemo também pode receber como segundo parametro uma variavel que ele vai esperar atualizar para ai sim, re-executar a função interna dele
@@ -71,6 +75,8 @@ const Example = ({ children, text }: ExampleProps) => {
       <Text>{children}</Text>
       <Text>{text}</Text>
       <Text>{name}</Text>
+      <Text>{value3}</Text>
+      <Button onPress={changeText} title="Hook Personalizado" />
       <Button onPress={changeName} title="Nome" />
       <Button onPress={changeLastName} title="Sobrenome" />
       <Text>{value1}</Text>
