@@ -54,6 +54,12 @@ const Text = ({ type, color, ...props }: TextProps) => {
       case textTypes.TITLE_LIGHT:
         return "Poppins-Light";
 
+      case textTypes.PARAGRAPH_SMALL_SEMI_BOLD:
+      case textTypes.BUTTON_SEMI_BOLD:
+      case textTypes.SUB_TITLE_SEMI_BOLD:
+      case textTypes.TITLE_SEMI_BOLD:
+        return "Poppins-SemiBold";
+
       case textTypes.TITLE_REGULAR:
       case textTypes.BUTTON_REGULAR:
       case textTypes.SUB_TITLE_REGULAR:
