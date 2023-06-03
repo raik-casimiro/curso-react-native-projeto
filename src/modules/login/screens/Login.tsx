@@ -18,6 +18,8 @@ const Login = () => {
           type={theme.buttons.buttonsTheme.primary}
           margin="10px"
           title="Login"
+          loading
+          disabled
           onPress={handleOnPress}
         />
       </ContainerLogin>
