@@ -13,9 +13,7 @@ interface ButtonProps extends TouchableOpacityProps {
 const Button = ({ margin, title, ...props }: ButtonProps) => {
   return (
     <ButtonContainer margin={margin} {...props}>
-      <Text type={textTypes.TITLE} color={theme.colors.neutralTheme.white}>
-        {title}
-      </Text>
+      <Text color={theme.colors.neutralTheme.white}>{title}</Text>
     </ButtonContainer>
   );
 };

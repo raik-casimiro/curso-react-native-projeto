@@ -8,4 +8,5 @@ interface ContainerTextProps {
 export const ContainerText = styled.Text<ContainerTextProps>`
   ${(props) => (props.color ? `color: ${props.color}; ` : ``)}
   font-size: ${(props) => props.fontSize}
+  font-family: Poppins-Light;
 `;
