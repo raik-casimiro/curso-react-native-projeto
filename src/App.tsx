@@ -1,12 +1,9 @@
 import { SafeAreaView, Text } from "react-native";
 
-import Example from "./Example";
-
 const App = () => {
   return (
     <SafeAreaView>
       <Text>Teste</Text>
-      <Example text="Text">Teste</Example>
     </SafeAreaView>
   );
 };
