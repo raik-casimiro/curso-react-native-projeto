@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import Button from "../../../shared/components/button/button";
 import Input from "../../../shared/components/input/input";
@@ -12,7 +12,6 @@ const Login = () => {
   return (
     <View>
       <ContainerLogin>
-        <Text>Texto</Text>
         <Input />
         <Button margin="10px" title="Login" onPress={handleOnPress} />
       </ContainerLogin>
