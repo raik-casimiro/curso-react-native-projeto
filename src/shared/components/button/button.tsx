@@ -37,7 +37,7 @@ const Button = ({
 
   const renderText = (color: string) => (
     <>
-      <Text type={textTypes.BUTTON_LIGHT} color={color}>
+      <Text type={textTypes.BUTTON_SEMI_BOLD} color={color}>
         {title}
       </Text>
       {loading && <ActivityIndicator color={theme.colors.neutralTheme.white} />}
