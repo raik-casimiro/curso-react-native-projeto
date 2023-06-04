@@ -2,9 +2,9 @@ import { TextInputProps } from "react-native/types";
 
 import { theme } from "../../themes/theme";
 import { DisplayFlexColumn } from "../globalStyles/globalView.style";
-import Text from "../text/text";
+import Text from "../text/Text";
 import { textTypes } from "../text/textTypes";
-import { ContainerInput } from "./input.styled";
+import { ContainerInput } from "./Input.styled";
 
 interface InputProps extends TextInputProps {
   title?: string;
