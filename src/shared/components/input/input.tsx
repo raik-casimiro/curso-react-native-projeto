@@ -1,19 +1,37 @@
-import { TextInputProps } from "react-native/types";
+import { useState } from "react";
+import { TextInputProps } from "react-native";
+import { View } from "react-native";
 
 import { theme } from "../../themes/theme";
 import { DisplayFlexColumn } from "../globalStyles/globalView.style";
 import Text from "../text/Text";
 import { textTypes } from "../text/textTypes";
-import { ContainerInput } from "./Input.styled";
+import { ContainerInput, IconEye } from "./Input.styled";
 
 interface InputProps extends TextInputProps {
   title?: string;
   errorMessage?: string;
+  secureTextEntry?: boolean;
+  customMargin?: string;
 }
 
-const Input = ({ errorMessage, title, ...props }: InputProps) => {
+const Input = ({
+  secureTextEntry,
+  errorMessage,
+  title,
+  customMargin,
+  ...props
+}: InputProps) => {
+  const [currentSecureTextEntry, setCurrentSecureTextEntry] = useState<boolean>(
+    !!secureTextEntry
+  );
+
+  const handleOnPressEye = () => {
+    setCurrentSecureTextEntry((current) => !current);
+  };
+
   return (
-    <DisplayFlexColumn>
+    <DisplayFlexColumn customMargin={customMargin}>
       {title && (
         <Text
           customMargin="0px 0px 4px 8px"
@@ -23,7 +41,21 @@ const Input = ({ errorMessage, title, ...props }: InputProps) => {
           {title}
         </Text>
       )}
-      <ContainerInput isError={!!errorMessage} {...props} />
+      <View>
+        <ContainerInput
+          hasSecureTextEntry={secureTextEntry}
+          secureTextEntry={currentSecureTextEntry}
+          isError={!!errorMessage}
+          {...props}
+        />
+        {secureTextEntry && (
+          <IconEye
+            onPress={handleOnPressEye}
+            name={currentSecureTextEntry ? "eye-blocked" : "eye"}
+            size={20}
+          />
+        )}
+      </View>
       {errorMessage && (
         <Text
           customMargin="4px 0px 0px 0px"

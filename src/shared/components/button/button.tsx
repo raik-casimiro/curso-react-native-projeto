@@ -9,7 +9,7 @@ import {
   ButtonDisabled,
   ButtonGradient,
   ButtonSecondary,
-} from "./button.styled";
+} from "./Button.styled";
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
