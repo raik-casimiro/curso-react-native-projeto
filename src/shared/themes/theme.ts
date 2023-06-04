@@ -3,6 +3,7 @@ import {
   grayTheme,
   mainTheme,
   neutralTheme,
+  orangeTheme,
   pinkTheme,
   purpleTheme,
 } from "./colors";
@@ -14,6 +15,7 @@ export const theme = {
     mainTheme,
     pinkTheme,
     purpleTheme,
+    orangeTheme,
   },
   buttons: {
     buttonsTheme,

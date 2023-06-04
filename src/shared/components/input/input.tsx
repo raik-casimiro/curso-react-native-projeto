@@ -8,9 +8,10 @@ import { ContainerInput } from "./input.styled";
 
 interface InputProps extends TextInputProps {
   title?: string;
+  errorMessage?: string;
 }
 
-const Input = ({ title, ...props }: InputProps) => {
+const Input = ({ errorMessage, title, ...props }: InputProps) => {
   return (
     <DisplayFlexColumn>
       {title && (
@@ -22,7 +23,16 @@ const Input = ({ title, ...props }: InputProps) => {
           {title}
         </Text>
       )}
-      <ContainerInput {...props} />
+      <ContainerInput isError={!!errorMessage} {...props} />
+      {errorMessage && (
+        <Text
+          customMargin="4px 0px 0px 0px"
+          color={theme.colors.orangeTheme.orange80}
+          type={textTypes.PARAGRAPH_BOLD}
+        >
+          {errorMessage}
+        </Text>
+      )}
     </DisplayFlexColumn>
   );
 };
