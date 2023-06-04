@@ -3,7 +3,7 @@ import { View } from "react-native";
 import Button from "../../../shared/components/button/Button";
 import Input from "../../../shared/components/input/Input";
 import { theme } from "../../../shared/themes/theme";
-import { ContainerLogin } from "../styles/login.style";
+import { ContainerLogin, ImageLogo } from "../styles/login.style";
 
 const Login = () => {
   const handleOnPress = () => {
@@ -13,6 +13,10 @@ const Login = () => {
   return (
     <View>
       <ContainerLogin>
+        <ImageLogo
+          resizeMode="center"
+          source={require("../../../assets/images/logo.png")}
+        />
         <Input
           customMargin="0px 0px 16px 0px"
           title="Email"

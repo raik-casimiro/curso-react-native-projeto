@@ -10,3 +10,10 @@ export const ContainerLogin = styled.View`
   align-items: center;
   padding: 15px;
 `;
+
+export const ImageLogo = styled.Image`
+  width: 150px;
+  height: 100px;
+  top: 25px;
+  position: absolute;
+`;
