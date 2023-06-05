@@ -1,27 +1,18 @@
-import axios from "axios";
 import { useState } from "react";
 import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
+
+import { useRequest } from "../../../shared/hooks/useRequest";
 
 export const useLogin = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const { setErrorMessage, authRequest, errorMessage, loading } = useRequest();
 
   const handleOnPress = async () => {
-    setLoading(true);
-
-    await axios
-      .post("http://192.168.0.2:8080/auth", {
-        email,
-        password,
-      })
-      .catch(() => {
-        setErrorMessage("Usuário ou senha inválidos");
-      })
-      .then(() => {
-        setLoading(false);
-      });
+    authRequest({
+      email,
+      password,
+    });
   };
 
   const handleOnChangeEmail = (
