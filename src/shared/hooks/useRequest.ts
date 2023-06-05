@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setUserAction } from "../../store/reducers/userReducer";
+import { useUserReducer } from "../../store/reducers/userReducer/useUserReducer";
 import { connectionAPIPost } from "../functions/connection/connectionAPI";
 import { RequestLogin } from "../types/requestLogin";
 import { ReturnLogin } from "../types/returnLogin";
 
 export const useRequest = () => {
-  const dispatch = useDispatch();
+  const { setUser } = useUserReducer();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -16,7 +17,7 @@ export const useRequest = () => {
 
     await connectionAPIPost<ReturnLogin>("http://192.168.0.2:8080/auth", body)
       .then((result) => {
-        dispatch(setUserAction(result.user));
+        setUser(result.user);
       })
       .catch(() => {
         setErrorMessage("Usuário ou senha inválidos");
