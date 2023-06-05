@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
-import { setUserAction } from "../../store/reducers/userReducer";
 import { useUserReducer } from "../../store/reducers/userReducer/useUserReducer";
+import { useGlobalReducer } from "../components/modal/globalModal/useGlobalReducer";
 import { connectionAPIPost } from "../functions/connection/connectionAPI";
 import { RequestLogin } from "../types/requestLogin";
 import { ReturnLogin } from "../types/returnLogin";
@@ -11,6 +10,7 @@ export const useRequest = () => {
   const { setUser } = useUserReducer();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const { setModal } = useGlobalReducer();
 
   const authRequest = async (body: RequestLogin) => {
     setLoading(true);
@@ -20,7 +20,11 @@ export const useRequest = () => {
         setUser(result.user);
       })
       .catch(() => {
-        setErrorMessage("Usuário ou senha inválidos");
+        setModal({
+          title: "Erro",
+          text: "Usuário ou senha inválidos",
+          visible: true,
+        });
       });
 
     setLoading(false);
